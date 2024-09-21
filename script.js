@@ -69,7 +69,9 @@ function resultValues(){
     // convert string array to integer
     valOne = parseInt(valOne.join(""));
     valTwo = parseInt(valTwo.join(""));
-    valOne = [operation(valOne, valTwo, chosenOperator)];
+
+    valOne = [Math.round(operation(valOne, valTwo, chosenOperator) * 10)/10];
+    appendToDisplay(valOne);
     valTwo = [];
     chosenOperator = '';
 }
@@ -78,6 +80,7 @@ function clearEverything(){
     valOne = [];
     valTwo = [];
     chosenOperator = '';
+    divDisplay.innerHTML = '';
 }
 
 function selectValueToAppend(num){
@@ -96,9 +99,13 @@ function userAppendNum(num, val){
 
     valArray = valArray.push(num);
     valArray = val.join("");
+
+    appendToDisplay(valArray);
 }
 
-
+function appendToDisplay(val){
+    divDisplay.innerHTML = val;
+}
 
 // user interface section
 
