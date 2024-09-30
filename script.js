@@ -15,7 +15,9 @@ function multiply(numOne, numTwo){
 }
 
 function divide(numOne, numTwo){
-    return numOne / numTwo;
+    if(numTwo === 0){
+        return "wudahel";
+    }else return numOne / numTwo;
 }
 
 function operation(numOne, numTwo, operator){
@@ -50,23 +52,29 @@ function createOperatorButtons(){
         divButtons.appendChild(buttons);
 
         buttons.addEventListener("click", () => {selectOperatorButtonFunction(validOperators[i])});
-
     }
 }
 
 function selectOperatorButtonFunction(operator){
-    switch(operator){
-        case ('+'): chosenOperator = '+'; break;
-        case ('-'): chosenOperator = '-'; break;
-        case ('*'): chosenOperator = '*'; break;
-        case ('/'): chosenOperator = '/'; break;
-        case ('='): resultValues(); break;
-        case ('clear'): clearEverything(); break;
+    if((valOne.length !== 0) && (valTwo.length !== 0) && (chosenOperator !== '')){
+        resultValues();
+    }else{
+        switch(operator){
+            case ('+'): chosenOperator = '+'; break;
+            case ('-'): chosenOperator = '-'; break;
+            case ('*'): chosenOperator = '*'; break;
+            case ('/'): chosenOperator = '/'; break;
+            case ('='): resultValues(); break;
+            case ('clear'): clearEverything(); break;
+        }
     }
 }
 
 function resultValues(){
     // convert string array to integer
+    if((valOne.length === 0) || (valTwo.length === 0) || (chosenOperator === '')){
+        return 0;
+    }else{
     valOne = parseInt(valOne.join(""));
     valTwo = parseInt(valTwo.join(""));
 
@@ -74,6 +82,7 @@ function resultValues(){
     appendToDisplay(valOne);
     valTwo = [];
     chosenOperator = '';
+    }
 }
 
 function clearEverything(){
